@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    container_name: deep-auth-app
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: deep-auth-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: deep
+      MYSQL_USER: deep
+      MYSQL_PASSWORD: deep
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
