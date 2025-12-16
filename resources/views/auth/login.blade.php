@@ -1,7 +1,11 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    <img
+        src="{{ asset('img/deep-logo.png') }}"
+        alt="Deep"
+        class="h-10 mx-auto mb-6"
+    />
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

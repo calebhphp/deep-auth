@@ -17,6 +17,20 @@
         @csrf
         @method('patch')
 
+        @if (auth()->user()->profile_photo_path)
+        <img
+            src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}"
+            alt="Foto de perfil"
+            class="img-thumbnail mb-3"
+            style="max-width: 150px;"
+        >
+        @endif
+
+        <div class="mb-3">
+            <label class="form-label" for="photo">Foto de perfil</label>
+            <input type="file" name="photo" id="photo" class="form-control">
+        </div>
+
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
